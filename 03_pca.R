@@ -2,8 +2,8 @@
 # Principal component analysis of the 38 racing dromedaries using LD-pruned SNPs.
 # Packages: GenABEL (data import), base R stats::prcomp (PCA)
 # Input : <dataset>_QC_IBS_LD.ped/.map, phenotype file with columns id and pop
-#         (pop codes: 15 = racing Kuwait, 20 = racing Oman (Sharqiya), 23 = racing Oman (Batinah))
-# Output: PCA plots (PC1 vs PC2, PC1 vs PC3) and PC coordinates
+#         (pop codes: 15 = racing Kuwait; 20 and 23 = racing Oman)
+# Output: PCA plot (PC1 vs PC2) and PC coordinates
 
 library(GenABEL)
 
@@ -27,9 +27,8 @@ pc    <- data.frame(id = rownames(pca$x), pca$x[, 1:3], stringsAsFactors = FALSE
 pheno <- read.table("racing_project_pheno.txt", header = TRUE, stringsAsFactors = FALSE)
 pc    <- merge(pc, pheno[, c("id", "pop")], by = "id")
 
-groups <- list("Racing Kuwait"            = list(pop = 15, col = "blue"),
-               "Racing Oman (Batinah)"    = list(pop = 23, col = "red"),
-               "Racing Oman (Sharqiya)"   = list(pop = 20, col = "darkgreen"))
+groups <- list("Racing Kuwait" = list(pop = 15,        col = "blue"),
+               "Racing Oman"   = list(pop = c(20, 23), col = "red"))
 
 dir.create(file.path(project_dir, "PCA"), showWarnings = FALSE)
 setwd(file.path(project_dir, "PCA"))
@@ -40,7 +39,7 @@ plot_pcs <- function(a, b, fname) {
   plot(pc[[paste0("PC", a)]], pc[[paste0("PC", b)]], type = "n",
        xlab = paste0("PC", a, " (", pve[a], "%)"), ylab = paste0("PC", b, " (", pve[b], "%)"))
   for (g in names(groups)) {
-    s <- pc[pc$pop == groups[[g]]$pop, ]
+    s <- pc[pc$pop %in% groups[[g]]$pop, ]
     points(s[[paste0("PC", a)]], s[[paste0("PC", b)]], pch = 19, col = groups[[g]]$col)
   }
   abline(h = 0, v = 0, lty = 3)
@@ -48,6 +47,5 @@ plot_pcs <- function(a, b, fname) {
   dev.off()
 }
 plot_pcs(1, 2, "PCA_race_omn_kw_PC1_PC2.tiff")
-plot_pcs(1, 3, "PCA_race_omn_kw_PC1_PC3.tiff")
 
 write.table(pc, "PCA_race_omn_kw_coordinates.txt", row.names = FALSE, sep = "\t", quote = FALSE)
