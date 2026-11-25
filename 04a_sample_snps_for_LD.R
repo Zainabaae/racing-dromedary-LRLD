@@ -1,5 +1,5 @@
 # 04a_sample_snps_for_LD.R
-# Randomly samples 30% of the QC'd SNPs on each autosome; pairwise LD (04b) is computed on
+# Randomly samples of the QC'd SNPs on each autosome; pairwise LD (04b) is computed on
 # these SNPs only, to keep the number of SNP pairs computationally manageable.
 # NOTE: the original analysis was run without a fixed random seed. The SNP lists actually
 # used are provided in data/snp_lists/ so that the analysis can be reproduced exactly;
