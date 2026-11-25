@@ -19,10 +19,10 @@ Read processing (fastp), alignment (BWA-MEM), duplicate removal (Picard) and var
 | Software | Version | Used for |
 |---|---|---|
 | PLINK | 1.9 | QC, IBS, LD pruning, pairwise LD, haplotype blocks |
-| VCFtools | 0.1.[x] | KING kinship (`--relatedness2`) |
+| VCFtools | 0.1.13 | KING kinship (`--relatedness2`) |
 | R | 4.4 | R scripts |
-| R packages | GenABEL [x], GenomicRanges [x] | genotype import, PCA, interval operations |
-| BEDTools | [x] | gene annotation (`intersectBed`) |
+| R packages | GenABEL, GenomicRanges | genotype import, PCA, interval operations |
+| BEDTools | | gene annotation (`intersectBed`) |
 
 ## Input files
 
