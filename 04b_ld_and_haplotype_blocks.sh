@@ -1,6 +1,6 @@
 #!/bin/bash
 # 04b_ld_and_haplotype_blocks.sh
-# (1) Pairwise LD (r2) per autosome, using the 30% SNP subset from 04a.
+# (1) Pairwise LD (r2) per autosome, using the SNP subset from 04a.
 #     All pairs with r2 >= 0.099 within 3 Mb are reported; the maximum distance searched is 3 Mb.
 # (2) Haplotype blocks per autosome (Gabriel et al. method in PLINK), using all QC'd SNPs.
 # Software: PLINK v1.9
