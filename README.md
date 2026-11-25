@@ -66,6 +66,4 @@ Because pairwise LD was calculated within a 3 Mb window, LRLD between blocks mor
 - Sizes are in base pairs. The PLINK `.blocks.det` column `KB` is in kilobases and is not used for size calculations.
 - Genomic coverage is calculated from the union of non-overlapping intervals, so blocks involved in several LRLD events are counted once.
 
-## Licence
 
-MIT (see `LICENSE`).
